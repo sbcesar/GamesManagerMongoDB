@@ -1,9 +1,7 @@
 package org.example.utils
 
 import org.bson.Document
-import org.bson.types.ObjectId
 import org.example.DataBase.DataBaseManager
-import org.example.entity.Videojuego
 import java.text.SimpleDateFormat
 
 class Menu(private val dataBaseManager: DataBaseManager) {
@@ -134,10 +132,11 @@ class Menu(private val dataBaseManager: DataBaseManager) {
 
                 if (genre != null && price != null && releaseDate != null) {
                     val updatedGame = Document()
+                        .append("_id", game.getObjectId("_id"))
                         .append("titulo", titleToModify)
                         .append("genero", genre)
                         .append("precio", price)
-                        .append("fecha_lanzamiento", SimpleDateFormat("dd/MM/yyyy").format(releaseDate))
+                        .append("fecha_lanzamiento", releaseDate)
 
                     val updateResult = dataBaseManager.updateGame(collectionName, updatedGame)
 

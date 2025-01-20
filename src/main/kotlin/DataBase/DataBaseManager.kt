@@ -34,9 +34,9 @@ class DataBaseManager {
         return collection.find().toList()
     }
 
-    fun findByTitle(collName: String, title: String): Videojuego? {
+    fun findByTitle(collName: String, title: String): Document? {
         return try {
-            val collection = database.getCollection(collName, Videojuego::class.java)
+            val collection = database.getCollection(collName)
             collection.find(eq("titulo", title)).firstOrNull()
         } catch (e: Exception) {
             println("Error al buscar el juego: ${e.message}")
@@ -76,7 +76,6 @@ class DataBaseManager {
         val updateResult = collection.replaceOne(filter, updatedGame)
         return updateResult.modifiedCount > 0
     }
-
 
     fun disconnect() {
         try {
