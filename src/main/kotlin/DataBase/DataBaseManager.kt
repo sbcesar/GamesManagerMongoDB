@@ -7,9 +7,7 @@ import com.mongodb.client.MongoDatabase
 import com.mongodb.client.model.Filters.eq
 import io.github.cdimascio.dotenv.dotenv
 import org.bson.Document
-import org.bson.types.ObjectId
 import org.example.entity.Videojuego
-import java.util.*
 
 class DataBaseManager {
     private val dbName = "cserben"
